@@ -22,7 +22,7 @@ Site.initColumn = function () {
                 if (null == value || "" == value) {
                     return "";
                 } else {
-                    var str = '<img src=' + Feng.ctxPath + '/kaptcha/' + value + ' style=width:40px;height: 40px>';
+                    var str = '<img src="' + value + '" style="width:40px;height: 40px;">';
                     return str;
                 }
             }},
