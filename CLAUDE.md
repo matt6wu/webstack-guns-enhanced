@@ -6,6 +6,76 @@
 - **端口**: 8000
 - **管理后台**: http://your-ip:8000/admin
 
+### Spring Boot 技术栈说明
+
+**Spring Boot** 是基于Spring框架的快速开发框架，具有以下特点：
+
+#### 1. 核心特性
+- **自动配置**: 根据项目依赖自动配置Spring应用
+- **嵌入式服务器**: 内置Tomcat服务器，无需外部部署
+- **起步依赖**: 简化Maven/Gradle依赖管理
+- **生产就绪**: 内置监控、健康检查等生产环境功能
+
+#### 2. WebStack-Guns 使用的技术组件
+```yaml
+核心框架:
+- Spring Boot 2.0.1: Web应用框架
+- Spring MVC: Web层控制器
+- MyBatis-Plus: 数据库ORM框架
+- Apache Shiro: 安全认证框架
+
+数据层:
+- MySQL: 关系型数据库
+- Druid: 数据库连接池
+- EhCache: 二级缓存
+
+模板引擎:
+- Beetl: 模板引擎（类似Thymeleaf）
+
+其他组件:
+- Swagger: API文档生成
+- JWT: Token认证
+- Kaptcha: 验证码生成
+```
+
+#### 3. 配置文件结构
+```yaml
+# application.yml 主要配置
+server:
+  port: 8000           # 服务端口
+  address: 0.0.0.0     # 监听地址（重要：允许外部访问）
+
+spring:
+  profiles:
+    active: local      # 激活的配置环境
+  datasource:          # 数据库配置
+    url: jdbc:mysql://localhost/guns
+    username: root
+    password: root
+```
+
+#### 4. 项目启动流程
+1. **JVM启动**: `java -jar target/Webstack-Guns-1.0.jar`
+2. **Spring容器初始化**: 加载Bean定义和自动配置
+3. **Tomcat服务器启动**: 监听8000端口
+4. **数据库连接池初始化**: 连接MySQL数据库
+5. **应用就绪**: 开始处理HTTP请求
+
+#### 5. 与传统Java Web项目的区别
+```
+传统方式:
+- 需要外部Tomcat服务器
+- 复杂的XML配置
+- 手动管理依赖版本
+- 部署复杂(WAR包)
+
+Spring Boot方式:
+- 内嵌Tomcat服务器
+- 约定优于配置
+- 自动依赖管理
+- 简单部署(JAR包)
+```
+
 ## 完整部署流程
 
 ### 1. 环境准备
@@ -454,6 +524,72 @@ ss -tlnp | grep 8000
 tail -f app.log
 ```
 
+### Spring Boot 应用管理
+
+#### 启动流程详解
+```bash
+# 1. 进入项目目录
+cd /home/ubuntu/apps/navigation/WebStack-Guns
+
+# 2. 启动应用（后台运行）
+nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
+
+# 3. 查看启动日志
+tail -f app.log
+
+# 成功启动的标志：
+# - "Tomcat started on port(s): 8000 (http)"
+# - "Started WebstackGunsApplication in X.XXX seconds"
+# - "Application is success!"
+```
+
+#### 应用状态检查
+```bash
+# 检查Java进程
+ps aux | grep java | grep Webstack-Guns
+
+# 检查端口监听
+ss -tlnp | grep 8000
+
+# 检查内存使用
+ps -p $(pgrep -f Webstack-Guns) -o pid,ppid,cmd,%mem,%cpu
+
+# 测试应用响应
+curl -I http://localhost:8000
+```
+
+#### 应用重启
+```bash
+# 方法1：使用进程ID
+kill $(ps aux | grep 'java -jar target/Webstack-Guns' | grep -v grep | awk '{print $2}')
+sleep 3
+nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
+
+# 方法2：使用pkill
+pkill -f "Webstack-Guns-1.0.jar"
+sleep 3
+nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
+```
+
+#### 日志管理
+```bash
+# 查看实时日志
+tail -f app.log
+
+# 查看最近50行日志
+tail -50 app.log
+
+# 查看启动相关日志
+grep -A 5 -B 5 "Started WebstackGunsApplication" app.log
+
+# 查看错误日志
+grep -i error app.log
+
+# 日志轮转（防止文件过大）
+mv app.log app.log.$(date +%Y%m%d)
+touch app.log
+```
+
 ### 防火墙配置
 ```bash
 # 开放8000端口
@@ -526,6 +662,59 @@ mysql -u root -proot -e "SHOW TABLES IN guns;"
 
 # 重新导入数据
 mysql -u root -proot guns < WebStack-Guns/sql/guns.sql
+```
+
+### 4. 外部访问问题 (ERR_EMPTY_RESPONSE)
+
+#### 问题现象
+- 手机可以访问，电脑浏览器显示 "未发送任何数据" (ERR_EMPTY_RESPONSE)
+- 本地访问正常，外部访问失败
+
+#### 问题原因
+Spring Boot默认配置可能只监听本地回环接口，需要明确指定监听所有网络接口。
+
+#### 解决步骤
+1. **修改配置文件**
+```bash
+# 编辑 src/main/resources/application.yml
+vi src/main/resources/application.yml
+
+# 在server配置中添加address配置
+server:
+  port: 8000
+  address: 0.0.0.0  # 新增此行，允许外部访问
+```
+
+2. **重启应用**
+```bash
+# 停止当前进程
+kill $(ps aux | grep 'java -jar target/Webstack-Guns' | grep -v grep | awk '{print $2}')
+
+# 重新启动
+nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
+```
+
+3. **验证修复结果**
+```bash
+# 检查端口监听（应该显示0.0.0.0:8000）
+ss -tlnp | grep 8000
+
+# 测试外部访问
+curl -I http://$(hostname -I | awk '{print $1}'):8000
+```
+
+#### 技术原理
+- **0.0.0.0**: 监听所有网络接口（IPv4）
+- **127.0.0.1**: 只监听本地回环接口
+- **server.address**: Spring Boot服务器绑定地址配置
+
+#### 相关配置说明
+```yaml
+# 不同监听配置的效果
+server:
+  address: 0.0.0.0      # 允许所有外部访问
+  address: 127.0.0.1    # 只允许本地访问
+  # 不配置address      # 依赖系统默认（可能导致外部访问问题）
 ```
 
 ## 目录结构
