@@ -1,0 +1,319 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.1.RELEASE)
+
+2025-07-04 20:54:14.616  INFO 1346156 --- [           main] c.jsnjfz.manage.WebstackGunsApplication  : Starting WebstackGunsApplication v1.0 on matt with PID 1346156 (/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar started by ubuntu in /home/ubuntu/apps/navigation/WebStack-Guns)
+2025-07-04 20:54:14.620  INFO 1346156 --- [           main] c.jsnjfz.manage.WebstackGunsApplication  : The following profiles are active: local
+2025-07-04 20:54:14.687  INFO 1346156 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4cdbe50f: startup date [Fri Jul 04 20:54:14 UTC 2025]; root of context hierarchy
+2025-07-04 20:54:15.607  INFO 1346156 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'druidProperties' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=singleDataSourceConfig; factoryMethodName=druidProperties; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/jsnjfz/manage/config/datasource/SingleDataSourceConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=cn.stylefeng.roses.core.config.MybaitsPlusAutoConfiguration; factoryMethodName=druidProperties; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [cn/stylefeng/roses/core/config/MybaitsPlusAutoConfiguration.class]]
+2025-07-04 20:54:15.607  INFO 1346156 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'paginationInterceptor' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=singleDataSourceConfig; factoryMethodName=paginationInterceptor; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/jsnjfz/manage/config/datasource/SingleDataSourceConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=cn.stylefeng.roses.core.config.MybaitsPlusAutoConfiguration; factoryMethodName=paginationInterceptor; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [cn/stylefeng/roses/core/config/MybaitsPlusAutoConfiguration.class]]
+2025-07-04 20:54:15.608  INFO 1346156 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'dataSource' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=singleDataSourceConfig; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/jsnjfz/manage/config/datasource/SingleDataSourceConfig.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=cn.stylefeng.roses.core.config.MybaitsPlusAutoConfiguration; factoryMethodName=dataSource; initMethodName=init; destroyMethodName=(inferred); defined in class path resource [cn/stylefeng/roses/core/config/MybaitsPlusAutoConfiguration.class]]
+2025-07-04 20:54:16.316  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.jsnjfz.manage.config.web.ShiroConfig$$EnhancerBySpringCGLIB$$1b3fe853] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.395  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeCookie' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.467  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeManager' of type [org.apache.shiro.web.mgt.CookieRememberMeManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.473  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'ehCacheConfig' of type [com.jsnjfz.manage.config.EhCacheConfig$$EnhancerBySpringCGLIB$$166565b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.481  INFO 1346156 --- [           main] o.s.c.ehcache.EhCacheManagerFactoryBean  : Initializing EhCache CacheManager
+2025-07-04 20:54:16.601  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'ehcache' of type [org.springframework.cache.ehcache.EhCacheManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.607  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'getCacheShiroManager' of type [org.apache.shiro.cache.ehcache.EhCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.624  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.context.properties.ConversionServiceDeducer$Factory' of type [org.springframework.boot.context.properties.ConversionServiceDeducer$Factory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.637  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'gunsProperties' of type [com.jsnjfz.manage.config.properties.GunsProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.655  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'defaultWebSessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.686  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'shiroDbRealm' of type [com.jsnjfz.manage.core.shiro.ShiroDbRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.687  INFO 1346156 --- [           main] o.a.shiro.cache.ehcache.EhCacheManager   : Cache with name 'com.jsnjfz.manage.core.shiro.ShiroDbRealm.authorizationCache' does not yet exist.  Creating now.
+2025-07-04 20:54:16.690  INFO 1346156 --- [           main] o.a.shiro.cache.ehcache.EhCacheManager   : Added EhCache named [com.jsnjfz.manage.core.shiro.ShiroDbRealm.authorizationCache]
+2025-07-04 20:54:16.703  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.714  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'methodInvokingFactoryBean' of type [org.springframework.beans.factory.config.MethodInvokingFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.716  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'webConfig' of type [com.jsnjfz.manage.config.web.WebConfig$$EnhancerBySpringCGLIB$$903b6796] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.784  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.791  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'druidStatPointcut' of type [org.springframework.aop.support.JdkRegexpMethodPointcut] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.800  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'druidStatInterceptor' of type [com.alibaba.druid.support.spring.stat.DruidStatInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.804  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'druidStatAdvisor' of type [org.springframework.aop.support.DefaultPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:16.869  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$30810ee0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:17.128  INFO 1346156 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$799344fe] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2025-07-04 20:54:17.509  INFO 1346156 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2025-07-04 20:54:17.537  INFO 1346156 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-04 20:54:17.537  INFO 1346156 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2025-07-04 20:54:17.549  INFO 1346156 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib/aarch64:/usr/lib/aarch64-linux-gnu/jni:/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2025-07-04 20:54:17.633  INFO 1346156 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-04 20:54:17.633  INFO 1346156 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2949 ms
+2025-07-04 20:54:17.909  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
+2025-07-04 20:54:17.911  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2025-07-04 20:54:17.914  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2025-07-04 20:54:17.914  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2025-07-04 20:54:17.915  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2025-07-04 20:54:17.915  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2025-07-04 20:54:17.915  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2025-07-04 20:54:17.915  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'xssFilter' to urls: [/*]
+2025-07-04 20:54:17.915  INFO 1346156 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilter' to: [/*]
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+2025-07-04 20:54:18.471  INFO 1346156 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+Using VFS adapter com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS
+Checking to see if class com.jsnjfz.manage.modular.system.model.Dept matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Expense matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.LoginLog matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Site matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Role matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Notice matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Category matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Dict matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.User matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.OperationLog matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Relation matches criteria [is assignable to Object]
+Checking to see if class com.jsnjfz.manage.modular.system.model.Menu matches criteria [is assignable to Object]
+Scanned package: 'com.jsnjfz.manage.modular.system.model' for aliases
+Registered plugin: 'com.baomidou.mybatisplus.plugins.PaginationInterceptor@24fcf36f'
+Registered plugin: 'cn.stylefeng.roses.core.datascope.DataScopeInterceptor@10feca44'
+Registered plugin: 'com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor@3fb1549b'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/SiteMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/RelationMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/OperationLogMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/DictMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/NoticeMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/UserMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/RoleMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/ExpenseMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/LoginLogMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/DeptMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/CategoryMapper.xml]'
+Parsed mapper file: 'URL [jar:file:/home/ubuntu/apps/navigation/WebStack-Guns/target/Webstack-Guns-1.0.jar!/BOOT-INF/classes!/com/jsnjfz/manage/modular/system/dao/mapping/MenuMapper.xml]'
+2025-07-04 20:54:20.390  INFO 1346156 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2025-07-04 20:54:20.820  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4cdbe50f: startup date [Fri Jul 04 20:54:14 UTC 2025]; root of context hierarchy
+2025-07-04 20:54:20.944  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/loginLog/delLoginLog]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.LoginLogController.delLog()
+2025-07-04 20:54:20.946  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/loginLog]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LoginLogController.index()
+2025-07-04 20:54:20.946  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/loginLog/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.LoginLogController.list(java.lang.String,java.lang.String,java.lang.String)
+2025-07-04 20:54:20.947  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/global/error]}" onto public java.lang.String com.jsnjfz.manage.core.common.controller.GlobalController.errorPage()
+2025-07-04 20:54:20.947  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/global/sessionError]}" onto public java.lang.String com.jsnjfz.manage.core.common.controller.GlobalController.errorPageInfo(org.springframework.ui.Model)
+2025-07-04 20:54:20.950  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/detail/{dictId}]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DictController.detail(java.lang.Integer)
+2025-07-04 20:54:20.950  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/dict_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DictController.deptAdd()
+2025-07-04 20:54:20.950  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/dict_edit/{dictId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DictController.deptUpdate(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.950  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DictController.index()
+2025-07-04 20:54:20.951  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/add]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DictController.add(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2025-07-04 20:54:20.951  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/update]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DictController.update(java.lang.Integer,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2025-07-04 20:54:20.951  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/delete]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DictController.delete(java.lang.Integer)
+2025-07-04 20:54:20.951  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dict/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DictController.list(java.lang.String)
+2025-07-04 20:54:20.954  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[GET]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LoginController.login()
+2025-07-04 20:54:20.954  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[POST]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LoginController.loginVali()
+2025-07-04 20:54:20.954  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logout],methods=[GET]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LoginController.logOut()
+2025-07-04 20:54:20.955  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin],methods=[GET]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LoginController.index(org.springframework.ui.Model)
+2025-07-04 20:54:20.955  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/about]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.IndexController.about(org.springframework.ui.Model)
+2025-07-04 20:54:20.955  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.IndexController.index(org.springframework.ui.Model)
+2025-07-04 20:54:20.959  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/selectMenuTreeList]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.MenuController.selectMenuTreeList()
+2025-07-04 20:54:20.959  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/menu_edit/{menuId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.MenuController.menuEdit(java.lang.Long,org.springframework.ui.Model)
+2025-07-04 20:54:20.959  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/menu_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.MenuController.menuAdd()
+2025-07-04 20:54:20.959  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/edit]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.MenuController.edit(com.jsnjfz.manage.modular.system.model.Menu,org.springframework.validation.BindingResult)
+2025-07-04 20:54:20.960  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/view/{menuId}]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.MenuController.view(java.lang.Long)
+2025-07-04 20:54:20.960  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/menuTreeListByRoleId/{roleId}]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.MenuController.menuTreeListByRoleId(java.lang.Integer)
+2025-07-04 20:54:20.960  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/menuTreeList]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.MenuController.menuTreeList()
+2025-07-04 20:54:20.960  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.MenuController.index()
+2025-07-04 20:54:20.961  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/add]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.MenuController.add(com.jsnjfz.manage.modular.system.model.Menu,org.springframework.validation.BindingResult)
+2025-07-04 20:54:20.961  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/remove]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.MenuController.remove(java.lang.Long)
+2025-07-04 20:54:20.961  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menu/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.MenuController.list(java.lang.String,java.lang.String)
+2025-07-04 20:54:20.963  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/category_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.CategoryController.categoryAdd()
+2025-07-04 20:54:20.963  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/category_update/{id}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.CategoryController.categoryUpdate(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.963  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.CategoryController.index()
+2025-07-04 20:54:20.964  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/add]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.CategoryController.add(com.jsnjfz.manage.modular.system.model.Category)
+2025-07-04 20:54:20.964  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/update]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.CategoryController.update(com.jsnjfz.manage.modular.system.model.Category)
+2025-07-04 20:54:20.964  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/delete]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.CategoryController.delete(java.lang.Integer)
+2025-07-04 20:54:20.964  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.CategoryController.list(java.lang.String)
+2025-07-04 20:54:20.965  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/category/tree]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.CategoryController.tree()
+2025-07-04 20:54:20.967  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/role_assign/{roleId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.RoleController.roleAssign(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.967  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/role_edit/{roleId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.RoleController.roleEdit(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.967  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/role_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.RoleController.roleAdd()
+2025-07-04 20:54:20.967  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/setAuthority]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.RoleController.setAuthority(java.lang.Integer,java.lang.String)
+2025-07-04 20:54:20.968  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/roleTreeListByUserId/{userId}]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.RoleController.roleTreeListByUserId(java.lang.Integer)
+2025-07-04 20:54:20.968  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/edit]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.RoleController.edit(com.jsnjfz.manage.modular.system.model.Role,org.springframework.validation.BindingResult)
+2025-07-04 20:54:20.968  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/view/{roleId}]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.RoleController.view(java.lang.Integer)
+2025-07-04 20:54:20.968  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/roleTreeList]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.RoleController.roleTreeList()
+2025-07-04 20:54:20.969  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.RoleController.index()
+2025-07-04 20:54:20.969  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/add]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.RoleController.add(com.jsnjfz.manage.modular.system.model.Role,org.springframework.validation.BindingResult)
+2025-07-04 20:54:20.969  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/remove]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.RoleController.remove(java.lang.Integer)
+2025-07-04 20:54:20.969  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/role/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.RoleController.list(java.lang.String)
+2025-07-04 20:54:20.970  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log/detail/{id}]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.LogController.detail(java.lang.Integer)
+2025-07-04 20:54:20.970  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log/delLog]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.LogController.delLog()
+2025-07-04 20:54:20.971  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.LogController.index()
+2025-07-04 20:54:20.971  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/log/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.LogController.list(java.lang.String,java.lang.String,java.lang.String,java.lang.Integer)
+2025-07-04 20:54:20.972  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/detail/{deptId}]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DeptController.detail(java.lang.Integer)
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/dept_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DeptController.deptAdd()
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/dept_update/{deptId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DeptController.deptUpdate(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.DeptController.index()
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/add]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DeptController.add(com.jsnjfz.manage.modular.system.model.Dept)
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/update]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DeptController.update(com.jsnjfz.manage.modular.system.model.Dept)
+2025-07-04 20:54:20.973  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/delete]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DeptController.delete(java.lang.Integer)
+2025-07-04 20:54:20.974  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.DeptController.list(java.lang.String)
+2025-07-04 20:54:20.974  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/dept/tree]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.DeptController.tree()
+2025-07-04 20:54:20.975  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/site_update/{id}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.SiteController.siteUpdate(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.975  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/site_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.SiteController.siteAdd()
+2025-07-04 20:54:20.976  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.SiteController.index()
+2025-07-04 20:54:20.976  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/add]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.SiteController.add(com.jsnjfz.manage.modular.system.model.Site)
+2025-07-04 20:54:20.976  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/update]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.SiteController.update(com.jsnjfz.manage.modular.system.model.Site)
+2025-07-04 20:54:20.976  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/delete]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.SiteController.delete(java.lang.Integer)
+2025-07-04 20:54:20.977  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.SiteController.list(java.lang.String)
+2025-07-04 20:54:20.977  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/site/tree]}" onto public java.util.List<com.jsnjfz.manage.core.common.node.ZTreeNode> com.jsnjfz.manage.modular.system.controller.SiteController.tree()
+2025-07-04 20:54:20.977  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/blackboard]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.BlackboardController.blackboard(org.springframework.ui.Model)
+2025-07-04 20:54:20.978  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/hello]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.NoticeController.hello()
+2025-07-04 20:54:20.979  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/notice_update/{noticeId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.NoticeController.noticeUpdate(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.979  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/notice_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.NoticeController.noticeAdd()
+2025-07-04 20:54:20.979  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.NoticeController.index()
+2025-07-04 20:54:20.979  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/add]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.NoticeController.add(com.jsnjfz.manage.modular.system.model.Notice)
+2025-07-04 20:54:20.979  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/update]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.NoticeController.update(com.jsnjfz.manage.modular.system.model.Notice)
+2025-07-04 20:54:20.980  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/delete]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.NoticeController.delete(java.lang.Integer)
+2025-07-04 20:54:20.980  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notice/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.NoticeController.list(java.lang.String)
+2025-07-04 20:54:20.980  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/kaptcha/{pictureId}]}" onto public void com.jsnjfz.manage.modular.system.controller.KaptchaController.renderPicture(java.lang.String,javax.servlet.http.HttpServletResponse)
+2025-07-04 20:54:20.981  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/kaptcha]}" onto public void com.jsnjfz.manage.modular.system.controller.KaptchaController.index(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-07-04 20:54:20.983  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/user_edit/{userId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.userEdit(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.984  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/user_chpwd]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.chPwd()
+2025-07-04 20:54:20.984  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/changePwd]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.UserMgrController.changePwd(java.lang.String,java.lang.String,java.lang.String)
+2025-07-04 20:54:20.984  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/role_assign/{userId}]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.roleAssign(java.lang.Integer,org.springframework.ui.Model)
+2025-07-04 20:54:20.984  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/setRole]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.setRole(java.lang.Integer,java.lang.String)
+2025-07-04 20:54:20.984  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/freeze]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.freeze(java.lang.Integer)
+2025-07-04 20:54:20.985  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/unfreeze]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.unfreeze(java.lang.Integer)
+2025-07-04 20:54:20.985  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/edit]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.edit(com.jsnjfz.manage.modular.system.transfer.UserDto,org.springframework.validation.BindingResult) throws javax.naming.NoPermissionException
+2025-07-04 20:54:20.985  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/user_add]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.addView()
+2025-07-04 20:54:20.985  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/view/{userId}]}" onto public com.jsnjfz.manage.modular.system.model.User com.jsnjfz.manage.modular.system.controller.UserMgrController.view(java.lang.Integer)
+2025-07-04 20:54:20.985  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/upload],methods=[POST]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.upload(org.springframework.web.multipart.MultipartFile)
+2025-07-04 20:54:20.986  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.index()
+2025-07-04 20:54:20.986  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/add]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.add(com.jsnjfz.manage.modular.system.transfer.UserDto,org.springframework.validation.BindingResult)
+2025-07-04 20:54:20.986  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/delete]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.delete(java.lang.Integer)
+2025-07-04 20:54:20.986  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/list]}" onto public java.lang.Object com.jsnjfz.manage.modular.system.controller.UserMgrController.list(java.lang.String,java.lang.String,java.lang.String,java.lang.Integer)
+2025-07-04 20:54:20.986  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/reset]}" onto public cn.stylefeng.roses.core.reqres.response.ResponseData com.jsnjfz.manage.modular.system.controller.UserMgrController.reset(java.lang.Integer)
+2025-07-04 20:54:20.987  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/mgr/user_info]}" onto public java.lang.String com.jsnjfz.manage.modular.system.controller.UserMgrController.userInfo(org.springframework.ui.Model)
+2025-07-04 20:54:20.987  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/gunsApi/auth]}" onto public java.lang.Object com.jsnjfz.manage.modular.api.ApiController.auth(java.lang.String,java.lang.String)
+2025-07-04 20:54:20.987  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/gunsApi/test],methods=[POST]}" onto public java.lang.Object com.jsnjfz.manage.modular.api.ApiController.test()
+2025-07-04 20:54:20.990  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2025-07-04 20:54:20.991  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2025-07-04 20:54:20.993  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/code/generate],methods=[POST]}" onto public java.lang.Object cn.stylefeng.guns.generator.modular.controller.CodeController.generate(cn.stylefeng.guns.generator.executor.model.GenQo)
+2025-07-04 20:54:20.993  INFO 1346156 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/code]}" onto public java.lang.String cn.stylefeng.guns.generator.modular.controller.CodeController.blackboard(org.springframework.ui.Model)
+2025-07-04 20:54:21.090  INFO 1346156 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2025-07-04 20:54:21.090  INFO 1346156 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/static/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2025-07-04 20:54:21.090  INFO 1346156 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/swagger-ui.html] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2025-07-04 20:54:21.129  INFO 1346156 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandler
+2025-07-04 20:54:21.130  INFO 1346156 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in defaultControllerExceptionHandler
+2025-07-04 20:54:21.760  INFO 1346156 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2025-07-04 20:54:21.796  INFO 1346156 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2025-07-04 20:54:21.800  INFO 1346156 --- [           main] c.jsnjfz.manage.WebstackGunsApplication  : Started WebstackGunsApplication in 7.782 seconds (JVM running for 8.275)
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+2025-07-04 20:54:22.154  INFO 1346156 --- [           main] c.jsnjfz.manage.WebstackGunsApplication  : Application is success!
+2025-07-04 20:54:22.203  INFO 1346156 --- [0.0-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2025-07-04 20:54:22.203  INFO 1346156 --- [0.0-8000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2025-07-04 20:54:22.227  INFO 1346156 --- [0.0-8000-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 24 ms
+2025-07-04 20:54:22.244  INFO 1346156 --- [0.0-8000-exec-1] a.s.s.m.AbstractValidatingSessionManager : Enabling session validation scheduler...
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c9765ab] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select id,title name,sort num,icon,create_time createTime,parent_id parentId,levels,1 ismenu from category order by sort 
+==> Parameters: 
+<==    Columns: id, name, num, icon, createTime, parentId, levels, ismenu
+<==        Row: 47, 常用工具, 1, fa-wrench, 2025-07-03 19:31:13, 0, 1, 1
+<==        Row: 48, 个人工具, 2, fa-user, 2025-07-04 08:10:44, 0, 1, 1
+<==        Row: 49, 购物网站, 3, fa-shopping-cart, 2025-07-04 08:25:24, 0, 1, 1
+<==        Row: 50, 我的博客, 4, fa-edit, 2025-07-04 15:37:30, 0, 1, 1
+<==        Row: 51, 其他工具, 5, fa-cogs, 2025-07-04 15:39:29, 0, 1, 1
+<==      Total: 5
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c9765ab]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70c84de] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select id,title,sort,icon,create_time createTime,parent_id parentId,levels from category order by sort 
+==> Parameters: 
+<==    Columns: id, title, sort, icon, createTime, parentId, levels
+<==        Row: 47, 常用工具, 1, fa-wrench, 2025-07-03 19:31:13, 0, 1
+<==        Row: 48, 个人工具, 2, fa-user, 2025-07-04 08:10:44, 0, 1
+<==        Row: 49, 购物网站, 3, fa-shopping-cart, 2025-07-04 08:25:24, 0, 1
+<==        Row: 50, 我的博客, 4, fa-edit, 2025-07-04 15:37:30, 0, 1
+<==        Row: 51, 其他工具, 5, fa-cogs, 2025-07-04 15:39:29, 0, 1
+<==      Total: 5
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70c84de]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b990d53] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select s.*,c.title categoryTitle from site s left join category c on s.category_id = c.id where 1=1 
+==> Parameters: 
+<==    Columns: id, category_id, title, thumb, description, url, create_time, update_time, categoryTitle
+<==        Row: 262, 47, Milanote, https://www.google.com/s2/favicons?domain=milanote.com&sz=64, 可视化笔记和创意整理工具, https://app.milanote.com/1S5RDi1GbScVkU/home, 2025-07-03 19:31:40, 2025-07-03 19:56:58, 常用工具
+<==        Row: 263, 48, Claude, https://www.google.com/s2/favicons?domain=claude.ai&sz=64, Anthropic的AI助手, https://claude.ai, 2025-07-03 19:31:40, null, 个人工具
+<==        Row: 264, 47, YouTube, https://www.google.com/s2/favicons?domain=www.youtube.com&sz=64, 全球最大视频分享平台, https://www.youtube.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 265, 47, Poe, https://www.google.com/s2/favicons?domain=poe.com&sz=64, AI聊天机器人平台, https://poe.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 266, 47, Gemini, https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64, Google AI助手, https://gemini.google.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 267, 47, Note, https://www.google.com/s2/favicons?domain=note.mattwu.cc&sz=64, 个人笔记系统, http://note.mattwu.cc/, 2025-07-04 08:18:20, 2025-07-04 08:19:00, 常用工具
+<==        Row: 268, 48, Gmail, https://www.google.com/s2/favicons?domain=google.com&sz=64, Google邮箱服务, https://mail.google.com/mail/u/0/#inbox, 2025-07-04 08:11:05, null, 个人工具
+<==        Row: 269, 48, 我的日历, https://www.google.com/s2/favicons?domain=calendar.google.com&sz=64, Google日历, https://calendar.google.com/calendar/u/0/r?pli=1, 2025-07-04 08:21:47, null, 个人工具
+<==        Row: 270, 47, OzBargain, https://www.google.com/s2/favicons?domain=www.ozbargain.com.au&sz=64, 澳洲优惠信息网站, https://www.ozbargain.com.au/, 2025-07-04 08:22:01, null, 常用工具
+<==        Row: 271, 49, 淘宝, https://www.google.com/s2/favicons?domain=www.taobao.com&sz=64, 淘宝网 - 亚洲较大的网上交易平台, https://www.taobao.com, 2025-07-04 08:25:46, null, 购物网站
+<==        Row: 272, 49, 京东, https://www.google.com/s2/favicons?domain=www.jd.com&sz=64, 京东 - 正品低价、品质保障, https://www.jd.com, 2025-07-04 08:26:01, null, 购物网站
+<==        Row: 273, 48, AI Shop, https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64, ai, https://xiaoai.shop/list/#/home, 2025-07-04 13:22:34, 2025-07-04 14:09:56, 个人工具
+<==        Row: 274, 47, 语雀, https://www.google.com/s2/favicons?domain=notion.so&sz=64, 专业的云端知识库, https://www.yuque.com/dashboard, 2025-07-04 15:33:38, null, 常用工具
+<==        Row: 275, 47, ChatGPT, https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64, OpenAI的AI聊天助手, https://chatgpt.com, 2025-07-04 15:35:47, null, 常用工具
+<==        Row: 276, 50, 木头的博客, https://www.google.com/s2/favicons?domain=wordpress.com&sz=64, 个人技术博客, https://blog.mutou.org/, 2025-07-04 15:37:44, null, 我的博客
+<==        Row: 277, 51, Poe Points, https://www.google.com/s2/favicons?domain=poepoints.vercel.app&sz=64, Poe积分工具, https://poepoints.vercel.app/, 2025-07-04 15:39:37, null, 其他工具
+<==        Row: 278, 49, 2345万年历, https://www.google.com/s2/favicons?domain=tools.2345.com&sz=64, 在线万年历工具, https://tools.2345.com/rili.htm, 2025-07-04 15:43:57, null, 购物网站
+<==        Row: 279, 50, GitHub仓库, https://www.google.com/s2/favicons?domain=github.com&sz=64, 个人GitHub代码仓库, https://github.com/matt6wu?tab=repositories, 2025-07-04 15:58:20, null, 我的博客
+<==        Row: 280, 50, 我的生命计算机, https://www.google.com/s2/favicons?domain=calculator.net&sz=64, 我的生命计算机, https://age-cal-matt6wus-projects.vercel.app/, 2025-07-04 16:03:27, null, 我的博客
+<==        Row: 281, 51, Vercel Projects, https://www.google.com/s2/favicons?domain=vercel.com&sz=64, 我的Vercel项目管理, https://vercel.com/matt6wus-projects, 2025-07-04 16:05:09, null, 其他工具
+<==        Row: 282, 51, 微信读书, https://www.google.com/s2/favicons?domain=weread.qq.com&sz=64, 微信读书平台, https://weread.qq.com/, 2025-07-04 16:07:57, null, 其他工具
+<==        Row: 1000, 49, 小红书, https://www.google.com/s2/favicons?domain=xiaohongshu.com&sz=64, 生活方式分享平台, https://www.xiaohongshu.com/explore, 2025-07-04 16:38:10, null, 购物网站
+<==      Total: 22
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b990d53]
+[MenuNode{id=47, parentId=0, name='常用工具', levels=1, num=1, url='null', icon='fa-wrench', children=null, linkedList=[]}, MenuNode{id=48, parentId=0, name='个人工具', levels=1, num=2, url='null', icon='fa-user', children=null, linkedList=[]}, MenuNode{id=49, parentId=0, name='购物网站', levels=1, num=3, url='null', icon='fa-shopping-cart', children=null, linkedList=[]}, MenuNode{id=50, parentId=0, name='我的博客', levels=1, num=4, url='null', icon='fa-edit', children=null, linkedList=[]}, MenuNode{id=51, parentId=0, name='其他工具', levels=1, num=5, url='null', icon='fa-cogs', children=null, linkedList=[]}]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47da3185] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select id,title name,sort num,icon,create_time createTime,parent_id parentId,levels,1 ismenu from category order by sort 
+==> Parameters: 
+<==    Columns: id, name, num, icon, createTime, parentId, levels, ismenu
+<==        Row: 47, 常用工具, 1, fa-wrench, 2025-07-03 19:31:13, 0, 1, 1
+<==        Row: 48, 个人工具, 2, fa-user, 2025-07-04 08:10:44, 0, 1, 1
+<==        Row: 49, 购物网站, 3, fa-shopping-cart, 2025-07-04 08:25:24, 0, 1, 1
+<==        Row: 50, 我的博客, 4, fa-edit, 2025-07-04 15:37:30, 0, 1, 1
+<==        Row: 51, 其他工具, 5, fa-cogs, 2025-07-04 15:39:29, 0, 1, 1
+<==      Total: 5
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47da3185]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@820cd35] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select id,title,sort,icon,create_time createTime,parent_id parentId,levels from category order by sort 
+==> Parameters: 
+<==    Columns: id, title, sort, icon, createTime, parentId, levels
+<==        Row: 47, 常用工具, 1, fa-wrench, 2025-07-03 19:31:13, 0, 1
+<==        Row: 48, 个人工具, 2, fa-user, 2025-07-04 08:10:44, 0, 1
+<==        Row: 49, 购物网站, 3, fa-shopping-cart, 2025-07-04 08:25:24, 0, 1
+<==        Row: 50, 我的博客, 4, fa-edit, 2025-07-04 15:37:30, 0, 1
+<==        Row: 51, 其他工具, 5, fa-cogs, 2025-07-04 15:39:29, 0, 1
+<==      Total: 5
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@820cd35]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39e202c8] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@6c0d9d86] will not be managed by Spring
+==>  Preparing: select s.*,c.title categoryTitle from site s left join category c on s.category_id = c.id where 1=1 
+==> Parameters: 
+<==    Columns: id, category_id, title, thumb, description, url, create_time, update_time, categoryTitle
+<==        Row: 262, 47, Milanote, https://www.google.com/s2/favicons?domain=milanote.com&sz=64, 可视化笔记和创意整理工具, https://app.milanote.com/1S5RDi1GbScVkU/home, 2025-07-03 19:31:40, 2025-07-03 19:56:58, 常用工具
+<==        Row: 263, 48, Claude, https://www.google.com/s2/favicons?domain=claude.ai&sz=64, Anthropic的AI助手, https://claude.ai, 2025-07-03 19:31:40, null, 个人工具
+<==        Row: 264, 47, YouTube, https://www.google.com/s2/favicons?domain=www.youtube.com&sz=64, 全球最大视频分享平台, https://www.youtube.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 265, 47, Poe, https://www.google.com/s2/favicons?domain=poe.com&sz=64, AI聊天机器人平台, https://poe.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 266, 47, Gemini, https://www.google.com/s2/favicons?domain=gemini.google.com&sz=64, Google AI助手, https://gemini.google.com, 2025-07-03 19:31:40, null, 常用工具
+<==        Row: 267, 47, Note, https://www.google.com/s2/favicons?domain=note.mattwu.cc&sz=64, 个人笔记系统, http://note.mattwu.cc/, 2025-07-04 08:18:20, 2025-07-04 08:19:00, 常用工具
+<==        Row: 268, 48, Gmail, https://www.google.com/s2/favicons?domain=google.com&sz=64, Google邮箱服务, https://mail.google.com/mail/u/0/#inbox, 2025-07-04 08:11:05, null, 个人工具
+<==        Row: 269, 48, 我的日历, https://www.google.com/s2/favicons?domain=calendar.google.com&sz=64, Google日历, https://calendar.google.com/calendar/u/0/r?pli=1, 2025-07-04 08:21:47, null, 个人工具
+<==        Row: 270, 47, OzBargain, https://www.google.com/s2/favicons?domain=www.ozbargain.com.au&sz=64, 澳洲优惠信息网站, https://www.ozbargain.com.au/, 2025-07-04 08:22:01, null, 常用工具
+<==        Row: 271, 49, 淘宝, https://www.google.com/s2/favicons?domain=www.taobao.com&sz=64, 淘宝网 - 亚洲较大的网上交易平台, https://www.taobao.com, 2025-07-04 08:25:46, null, 购物网站
+<==        Row: 272, 49, 京东, https://www.google.com/s2/favicons?domain=www.jd.com&sz=64, 京东 - 正品低价、品质保障, https://www.jd.com, 2025-07-04 08:26:01, null, 购物网站
+<==        Row: 273, 48, AI Shop, https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64, ai, https://xiaoai.shop/list/#/home, 2025-07-04 13:22:34, 2025-07-04 14:09:56, 个人工具
+<==        Row: 274, 47, 语雀, https://www.google.com/s2/favicons?domain=notion.so&sz=64, 专业的云端知识库, https://www.yuque.com/dashboard, 2025-07-04 15:33:38, null, 常用工具
+<==        Row: 275, 47, ChatGPT, https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64, OpenAI的AI聊天助手, https://chatgpt.com, 2025-07-04 15:35:47, null, 常用工具
+<==        Row: 276, 50, 木头的博客, https://www.google.com/s2/favicons?domain=wordpress.com&sz=64, 个人技术博客, https://blog.mutou.org/, 2025-07-04 15:37:44, null, 我的博客
+<==        Row: 277, 51, Poe Points, https://www.google.com/s2/favicons?domain=poepoints.vercel.app&sz=64, Poe积分工具, https://poepoints.vercel.app/, 2025-07-04 15:39:37, null, 其他工具
+<==        Row: 278, 49, 2345万年历, https://www.google.com/s2/favicons?domain=tools.2345.com&sz=64, 在线万年历工具, https://tools.2345.com/rili.htm, 2025-07-04 15:43:57, null, 购物网站
+<==        Row: 279, 50, GitHub仓库, https://www.google.com/s2/favicons?domain=github.com&sz=64, 个人GitHub代码仓库, https://github.com/matt6wu?tab=repositories, 2025-07-04 15:58:20, null, 我的博客
+<==        Row: 280, 50, 我的生命计算机, https://www.google.com/s2/favicons?domain=calculator.net&sz=64, 我的生命计算机, https://age-cal-matt6wus-projects.vercel.app/, 2025-07-04 16:03:27, null, 我的博客
+<==        Row: 281, 51, Vercel Projects, https://www.google.com/s2/favicons?domain=vercel.com&sz=64, 我的Vercel项目管理, https://vercel.com/matt6wus-projects, 2025-07-04 16:05:09, null, 其他工具
+<==        Row: 282, 51, 微信读书, https://www.google.com/s2/favicons?domain=weread.qq.com&sz=64, 微信读书平台, https://weread.qq.com/, 2025-07-04 16:07:57, null, 其他工具
+<==        Row: 1000, 49, 小红书, https://www.google.com/s2/favicons?domain=xiaohongshu.com&sz=64, 生活方式分享平台, https://www.xiaohongshu.com/explore, 2025-07-04 16:38:10, null, 购物网站
+<==      Total: 22
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39e202c8]
+[MenuNode{id=47, parentId=0, name='常用工具', levels=1, num=1, url='null', icon='fa-wrench', children=null, linkedList=[]}, MenuNode{id=48, parentId=0, name='个人工具', levels=1, num=2, url='null', icon='fa-user', children=null, linkedList=[]}, MenuNode{id=49, parentId=0, name='购物网站', levels=1, num=3, url='null', icon='fa-shopping-cart', children=null, linkedList=[]}, MenuNode{id=50, parentId=0, name='我的博客', levels=1, num=4, url='null', icon='fa-edit', children=null, linkedList=[]}, MenuNode{id=51, parentId=0, name='其他工具', levels=1, num=5, url='null', icon='fa-cogs', children=null, linkedList=[]}]

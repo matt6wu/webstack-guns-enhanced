@@ -1,0 +1,79 @@
+@for(categorySite in categorySiteList){
+    @if(isNotEmpty(categorySite.sites)){
+        @if(categorySite.title == '常用工具'){
+        <!-- 每日名言显示 -->
+        <div class="daily-quote-container" style="margin-bottom: 30px;">
+            <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+                <i class="fa fa-quote-left" style="color: rgba(255,255,255,0.8); font-size: 24px; margin-bottom: 15px;"></i>
+                <div id="daily-quote-text" style="color: #fff; font-style: italic; font-size: 18px; line-height: 1.6; margin-bottom: 15px; font-family: 'Georgia', 'Times New Roman', serif; font-weight: 300; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    "The only way to do great work is to love what you do."
+                </div>
+                <div id="daily-quote-author" style="color: rgba(255,255,255,0.9); font-size: 14px; text-align: center; font-weight: 500;">
+                    — Steve Jobs
+                </div>
+                <script>
+                (function() {
+                    function fetchQuote() {
+                        var quoteText = document.getElementById('daily-quote-text');
+                        var quoteAuthor = document.getElementById('daily-quote-author');
+                        
+                        // 使用免费的quotable API，每次刷新都获取新名言
+                        fetch('https://api.quotable.io/random?minLength=30&maxLength=150&tags=inspirational|wisdom|success')
+                            .then(function(response) {
+                                return response.json();
+                            })
+                            .then(function(data) {
+                                quoteText.innerHTML = '"' + data.content + '"';
+                                quoteAuthor.innerHTML = '— ' + data.author;
+                            })
+                            .catch(function() {
+                                // 如果API失败，显示随机备用励志名言
+                                var fallbackQuotes = [
+                                    {text: "The only way to do great work is to love what you do.", author: "Steve Jobs"},
+                                    {text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs"},
+                                    {text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt"},
+                                    {text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill"},
+                                    {text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt"},
+                                    {text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb"},
+                                    {text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson"},
+                                    {text: "Life is what happens to you while you're busy making other plans.", author: "John Lennon"},
+                                    {text: "It is during our darkest moments that we must focus to see the light.", author: "Aristotle"},
+                                    {text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney"}
+                                ];
+                                var randomIndex = Math.floor(Math.random() * fallbackQuotes.length);
+                                var randomQuote = fallbackQuotes[randomIndex];
+                                quoteText.innerHTML = '"' + randomQuote.text + '"';
+                                quoteAuthor.innerHTML = '— ' + randomQuote.author;
+                            });
+                    }
+                    
+                    // 页面加载时立即获取名言（每次刷新都是新的）
+                    fetchQuote();
+                })();
+                </script>
+            </div>
+        </div>
+        @}
+    <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="${categorySite.title}"></i>${categorySite.title}</h4>
+        <div class="row">
+            @for(site in categorySite.sites){
+            <div class="col-sm-3">
+                <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('${site.url}', '_blank')" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="${site.url}">
+                    <div class="xe-comment-entry">
+                        <a class="xe-user-img">
+                            <img src="${site.thumb}" class="img-circle" width="40">
+                        </a>
+                        <div class="xe-comment">
+                            <a href="#" class="xe-user-name overflowClip_1">
+                                <strong>${site.title}</strong>
+                            </a>
+                            <p class="overflowClip_2">${site.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @}
+        </div>
+    <br>
+    @}
+@}
