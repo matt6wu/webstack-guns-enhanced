@@ -216,26 +216,56 @@ curl -I http://localhost:8000
 mysql -u root -proot -e "SELECT COUNT(*) FROM guns.category;"
 ```
 
-### 8. 创建自启动服务 (可选)
-```bash
-# 创建systemd服务文件
-sudo tee /etc/systemd/system/webstack-guns.service > /dev/null << 'EOF'
+### 8. 创建自启动服务 ✅ 已配置
+
+#### 服务文件位置
+`/etc/systemd/system/webstack-guns.service`
+
+#### 服务配置内容
+```ini
 [Unit]
 Description=WebStack-Guns Navigation Website
 After=network.target mysql.service
 
 [Service]
-Type=forking
+Type=simple
 User=ubuntu
+Group=ubuntu
 WorkingDirectory=/home/ubuntu/apps/navigation/WebStack-Guns
 ExecStart=/usr/bin/java -jar target/Webstack-Guns-1.0.jar
 ExecStop=/bin/kill -TERM $MAINPID
 Restart=always
 RestartSec=5
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
-EOF
+```
+
+#### 创建/重新配置服务
+```bash
+# 创建systemd服务文件
+sudo bash -c 'cat > /etc/systemd/system/webstack-guns.service << "EOF"
+[Unit]
+Description=WebStack-Guns Navigation Website
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/apps/navigation/WebStack-Guns
+ExecStart=/usr/bin/java -jar target/Webstack-Guns-1.0.jar
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF'
 
 # 重新加载systemd
 sudo systemctl daemon-reload
@@ -249,6 +279,13 @@ sudo systemctl start webstack-guns
 # 检查服务状态
 sudo systemctl status webstack-guns
 ```
+
+#### 服务特性
+- **✅ 开机自启**: 系统启动时自动运行
+- **✅ 自动重启**: 应用崩溃时自动重新启动（5秒延迟）
+- **✅ 日志管理**: 日志输出到systemd journal
+- **✅ 用户权限**: 以ubuntu用户身份运行
+- **✅ 依赖管理**: 等待网络和MySQL服务启动后再启动
 
 ### 9. 初始设置和示例数据
 访问 http://your-ip:8000/admin，使用默认账户登录：
@@ -511,6 +548,32 @@ mysql -u root -proot -e "SELECT account, password FROM guns.sys_user WHERE accou
 ## 系统配置
 
 ### 应用启动
+
+#### 方法1: 使用Systemd服务（推荐 - 开机自启）
+```bash
+# 启动服务
+sudo systemctl start webstack-guns
+
+# 停止服务
+sudo systemctl stop webstack-guns
+
+# 重启服务
+sudo systemctl restart webstack-guns
+
+# 查看服务状态
+sudo systemctl status webstack-guns
+
+# 查看服务日志
+sudo journalctl -u webstack-guns -f
+
+# 启用开机自启（已配置）
+sudo systemctl enable webstack-guns
+
+# 禁用开机自启
+sudo systemctl disable webstack-guns
+```
+
+#### 方法2: 手动启动（临时使用）
 ```bash
 # 启动应用
 cd /home/ubuntu/apps/navigation/WebStack-Guns
@@ -664,16 +727,18 @@ mysql -u root -proot -e "SHOW TABLES IN guns;"
 mysql -u root -proot guns < WebStack-Guns/sql/guns.sql
 ```
 
-### 4. 外部访问问题 (ERR_EMPTY_RESPONSE)
+### 4. 外部访问问题
 
-#### 问题现象
+#### 问题类型A: ERR_EMPTY_RESPONSE (Spring Boot配置问题)
+
+**问题现象**
 - 手机可以访问，电脑浏览器显示 "未发送任何数据" (ERR_EMPTY_RESPONSE)
 - 本地访问正常，外部访问失败
 
-#### 问题原因
+**问题原因**
 Spring Boot默认配置可能只监听本地回环接口，需要明确指定监听所有网络接口。
 
-#### 解决步骤
+**解决步骤**
 1. **修改配置文件**
 ```bash
 # 编辑 src/main/resources/application.yml
@@ -687,26 +752,56 @@ server:
 
 2. **重启应用**
 ```bash
-# 停止当前进程
-kill $(ps aux | grep 'java -jar target/Webstack-Guns' | grep -v grep | awk '{print $2}')
+# 使用systemd重启（推荐）
+sudo systemctl restart webstack-guns
 
-# 重新启动
+# 或手动重启
+kill $(ps aux | grep 'java -jar target/Webstack-Guns' | grep -v grep | awk '{print $2}')
 nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
 ```
 
-3. **验证修复结果**
-```bash
-# 检查端口监听（应该显示0.0.0.0:8000）
-ss -tlnp | grep 8000
+#### 问题类型B: 防火墙端口阻塞 ⚠️ 重启后常见问题
 
-# 测试外部访问
-curl -I http://$(hostname -I | awk '{print $1}'):8000
+**问题现象**
+- 重启服务器后无法外部访问
+- `curl: (7) Failed to connect to IP port 8000: No route to host`
+- 本地 `curl localhost:8000` 正常，外部IP访问失败
+
+**问题原因**
+iptables防火墙在重启后可能丢失8000端口的允许规则。
+
+**解决步骤** ✅ 
+```bash
+# 1. 检查当前防火墙规则
+sudo iptables -L INPUT -n --line-numbers
+
+# 2. 添加8000端口允许规则（在REJECT规则之前）
+sudo iptables -I INPUT 5 -p tcp --dport 8000 -j ACCEPT
+
+# 3. 保存规则（防止重启后丢失）
+sudo netfilter-persistent save
+
+# 4. 验证规则已添加
+sudo iptables -L INPUT -n --line-numbers
+
+# 5. 测试外部访问
+curl -I http://YOUR_SERVER_IP:8000
+```
+
+**永久解决方案**
+```bash
+# 确保netfilter-persistent已安装
+sudo apt install iptables-persistent netfilter-persistent -y
+
+# 每次修改iptables后都要保存
+sudo netfilter-persistent save
 ```
 
 #### 技术原理
 - **0.0.0.0**: 监听所有网络接口（IPv4）
 - **127.0.0.1**: 只监听本地回环接口
 - **server.address**: Spring Boot服务器绑定地址配置
+- **iptables**: Linux防火墙，重启后需要持久化规则
 
 #### 相关配置说明
 ```yaml
@@ -1132,6 +1227,149 @@ curl -I http://localhost:8000/static/css/mobile-fixes.css
 
 #### 4. 数据备份
 定期备份数据库，防止数据丢失
+
+## 网站Logo更换指南
+
+### 当前Logo系统结构
+- **主Logo**: `/src/main/webapp/static/img/logo2x.png` (500x378 PNG)
+- **折叠Logo**: `/src/main/webapp/static/img/logo-collapsed2x.png` (500x378 PNG)
+- **新Logo**: `/src/main/webapp/static/img/matt-logo.png` (500x378 PNG) ✅ 尺寸完全匹配
+
+### 需要修改的模板文件
+
+#### 1. 主侧边栏导航
+**文件**: `/src/main/webapp/WEB-INF/view/common/_sidebar.html`
+- **第7行**: `<img src="/static/img/logo2x.png" width="100%" alt="" />`
+- **第10行**: `<img src="/static/img/logo-collapsed2x.png" width="40" alt="" />`
+
+#### 2. 关于页面导航
+**文件**: `/src/main/webapp/WEB-INF/view/about.html`
+- **第11行**: `<img src="/static/img/logo2x.png" width="100%" alt="" class="hidden-xs">`
+- **第12行**: `<img src="/static/img/logo2x.png" width="100%" alt="" class="visible-xs">`
+
+### 两种实现方案
+
+#### 方案1: 替换现有文件（推荐 - 最简单）
+```bash
+# 备份当前Logo
+cp src/main/webapp/static/img/logo2x.png src/main/webapp/static/img/logo2x.png.backup
+cp src/main/webapp/static/img/logo-collapsed2x.png src/main/webapp/static/img/logo-collapsed2x.png.backup
+
+# 使用matt-logo.png替换现有Logo
+cp src/main/webapp/static/img/matt-logo.png src/main/webapp/static/img/logo2x.png
+cp src/main/webapp/static/img/matt-logo.png src/main/webapp/static/img/logo-collapsed2x.png
+```
+
+#### 方案2: 修改模板引用
+将以下4行模板中的路径都改为 `/static/img/matt-logo.png`：
+
+**_sidebar.html 修改**:
+```html
+<!-- 第7行 -->
+<img src="/static/img/matt-logo.png" width="100%" alt="" />
+
+<!-- 第10行 -->
+<img src="/static/img/matt-logo.png" width="40" alt="" />
+```
+
+**about.html 修改**:
+```html
+<!-- 第11行 -->
+<img src="/static/img/matt-logo.png" width="100%" alt="" class="hidden-xs">
+
+<!-- 第12行 -->
+<img src="/static/img/matt-logo.png" width="100%" alt="" class="visible-xs">
+```
+
+### 修改后的操作步骤
+
+1. **更新编译后的文件**:
+```bash
+# 复制图片到target目录
+cp src/main/webapp/static/img/matt-logo.png target/classes/static/img/
+
+# 如果选择方案2，还需要复制模板文件
+cp src/main/webapp/WEB-INF/view/common/_sidebar.html target/classes/WEB-INF/view/common/_sidebar.html
+cp src/main/webapp/WEB-INF/view/about.html target/classes/WEB-INF/view/about.html
+```
+
+2. **热更新JAR文件**:
+```bash
+# 更新图片
+jar -uf target/Webstack-Guns-1.0.jar -C target/classes static/img/matt-logo.png
+
+# 如果选择方案2，还需要更新模板
+jar -uf target/Webstack-Guns-1.0.jar -C target/classes WEB-INF/view/common/_sidebar.html
+jar -uf target/Webstack-Guns-1.0.jar -C target/classes WEB-INF/view/about.html
+```
+
+3. **重启应用**:
+```bash
+# 使用systemd重启
+sudo systemctl restart webstack-guns
+
+# 或手动重启
+kill $(ps aux | grep 'java -jar target/Webstack-Guns' | grep -v grep | awk '{print $2}')
+nohup java -jar target/Webstack-Guns-1.0.jar > app.log 2>&1 &
+```
+
+### 技术要点
+- ✅ **无需修改CSS** - 现有的Logo样式类会自动适配
+- ✅ **尺寸完全匹配** - matt-logo.png与原Logo尺寸相同 (500x378)
+- ✅ **热更新支持** - 无需重新编译整个项目
+- ✅ **影响最小** - 只涉及图片和模板文件，不影响业务逻辑
+
+### 推荐方案
+建议使用**方案1**（替换现有文件），因为：
+- 操作最简单，只需复制文件
+- 无需修改任何模板代码
+- 与现有CSS样式完全兼容
+- 维护成本最低
+
+### 常见问题排查 ⚠️
+
+#### 问题: Logo更换后看不到变化
+**症状**: 完成了所有更换步骤，但浏览器中看到的仍然是旧Logo
+
+**原因**: 浏览器缓存问题
+
+**解决方案**:
+1. **硬刷新**: 
+   - Windows/Linux: `Ctrl + F5` 或 `Ctrl + Shift + R`
+   - Mac: `Cmd + Shift + R`
+
+2. **清除浏览器缓存**:
+   - Chrome: 设置 > 隐私设置和安全性 > 清除浏览数据
+   - 选择"缓存的图片和文件"
+
+3. **使用无痕模式测试**:
+   - 打开隐私浏览模式访问网站
+   - 如果无痕模式显示新Logo，说明是缓存问题
+
+4. **验证Logo是否正确更新**:
+```bash
+# 检查Logo文件MD5（应该与matt-logo.png相同）
+md5sum src/main/webapp/static/img/logo2x.png src/main/webapp/static/img/matt-logo.png
+
+# 测试HTTP访问
+curl -I http://localhost:8000/static/img/logo2x.png
+```
+
+#### 验证步骤
+✅ **技术验证**（后端是否正确）:
+- [ ] 源文件已替换：`logo2x.png` 和 `logo-collapsed2x.png` 内容与 `matt-logo.png` 相同
+- [ ] target目录已同步：`target/classes/static/img/` 包含新Logo
+- [ ] JAR文件已更新：`jar -tf target/Webstack-Guns-1.0.jar | grep logo2x.png`
+- [ ] 应用已重启：进程启动时间晚于JAR文件修改时间
+- [ ] HTTP可访问：`curl -I http://localhost:8000/static/img/logo2x.png` 返回200
+
+✅ **视觉验证**（前端是否显示）:
+- [ ] 强制刷新浏览器缓存
+- [ ] 无痕模式测试
+- [ ] 不同浏览器测试
+- [ ] 移动端测试
+
+**如果技术验证全部通过，但视觉验证失败，问题100%是浏览器缓存导致的。**
 
 ---
 *此文档由 Claude 创建，用于快速理解和管理 WebStack-Guns 导航网站系统*
