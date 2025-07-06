@@ -53,6 +53,188 @@
                 </script>
             </div>
         </div>
+        
+        <!-- 时间和天气信息显示 -->
+        <div class="time-weather-container" style="margin-bottom: 30px;">
+            <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+                <i class="fa fa-clock-o" style="color: rgba(255,255,255,0.8); font-size: 24px; margin-bottom: 15px;"></i>
+                <div class="info-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto;">
+                    <!-- 北京时间 -->
+                    <div class="time-section" style="color: #fff;">
+                        <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">北京时间</div>
+                        <div id="beijing-date" style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">正在加载...</div>
+                        <div id="beijing-time" style="font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace;">--:--:--</div>
+                    </div>
+                    <!-- 广州天气 -->
+                    <div class="weather-section" style="color: #fff;">
+                        <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">广州天气</div>
+                        <div style="font-size: 20px; font-weight: 700; margin-bottom: 5px;">30°C</div>
+                        <div style="font-size: 14px; opacity: 0.9;">局部多云</div>
+                    </div>
+                    <!-- 墨尔本天气 -->
+                    <div class="weather-section" style="color: #fff;">
+                        <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">墨尔本天气</div>
+                        <div style="font-size: 20px; font-weight: 700; margin-bottom: 5px;">10°C</div>
+                        <div style="font-size: 14px; opacity: 0.9;">晴朗</div>
+                    </div>
+                </div>
+                <script>
+                (function() {
+                    function updateTime() {
+                        // 使用更准确的方法获取北京时间
+                        var now = new Date();
+                        
+                        // 获取北京时间的日期部分
+                        var beijingDate = now.toLocaleDateString('zh-CN', {
+                            timeZone: 'Asia/Shanghai',
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit'
+                        });
+                        
+                        // 获取北京时间的时间部分
+                        var beijingTime = now.toLocaleTimeString('zh-CN', {
+                            timeZone: 'Asia/Shanghai',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                            hour12: false
+                        });
+                        
+                        // 格式化日期为 YYYY-MM-DD 格式
+                        var dateParts = beijingDate.split('/');
+                        var dateStr = dateParts[0] + '-' + dateParts[1] + '-' + dateParts[2];
+                        
+                        document.getElementById('beijing-date').textContent = dateStr;
+                        document.getElementById('beijing-time').textContent = beijingTime;
+                    }
+                    
+                    // 立即更新时间
+                    updateTime();
+                    // 每秒更新一次
+                    setInterval(updateTime, 1000);
+                })();
+                </script>
+            </div>
+        </div>
+        
+        <!-- 一天电量进度显示 -->
+        <div class="daily-energy-container" style="margin-bottom: 30px;">
+            <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+                <i class="fa fa-battery-three-quarters" style="color: rgba(255,255,255,0.8); font-size: 24px; margin-bottom: 15px;"></i>
+                <div>
+                    <!-- 电池外框 -->
+                    <div class="battery-container" style="position: relative; width: 100%; height: 60px; background: rgba(255,255,255,0.1); border: 3px solid rgba(255,255,255,0.3); border-radius: 12px; margin-bottom: 15px; overflow: hidden;">
+                        <!-- 电池正极 -->
+                        <div style="position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 8px; height: 20px; background: rgba(255,255,255,0.3); border-radius: 0 4px 4px 0;"></div>
+                        <!-- 电量进度条 -->
+                        <div id="battery-level" style="height: 100%; background: linear-gradient(90deg, #4ade80, #22c55e, #16a34a); border-radius: 8px; transition: all 0.5s ease; width: 75%;">
+                        </div>
+                    </div>
+                    
+                    <!-- 时间信息 -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; color: #fff; font-size: 14px;">
+                        <div>
+                            <div style="opacity: 0.8;">已用时间</div>
+                            <div id="time-used" style="font-weight: bold; font-size: 16px;">计算中...</div>
+                        </div>
+                        <div>
+                            <div style="opacity: 0.8;">剩余时间</div>
+                            <div id="time-remaining" style="font-weight: bold; font-size: 16px;">计算中...</div>
+                        </div>
+                        <div>
+                            <div style="opacity: 0.8;">电量状态</div>
+                            <div id="battery-percent" style="font-weight: bold; font-size: 16px;">100%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                (function() {
+                    function updateDailyProgress() {
+                        // 配置时间：起床11点，睡觉凌晨3点 (第二天)
+                        const WAKE_UP_HOUR = 11;
+                        const WAKE_UP_MINUTE = 0;
+                        const SLEEP_HOUR = 3;  // 凌晨3点
+                        const SLEEP_MINUTE = 0;
+                        
+                        // 获取当前北京时间
+                        const now = new Date();
+                        const beijingTime = new Date(now.toLocaleString('en-US', {timeZone: 'Asia/Shanghai'}));
+                        
+                        const currentHour = beijingTime.getHours();
+                        const currentMinute = beijingTime.getMinutes();
+                        const currentTimeInMinutes = currentHour * 60 + currentMinute;
+                        
+                        // 起床时间（当天11:00）
+                        const wakeUpTime = WAKE_UP_HOUR * 60 + WAKE_UP_MINUTE;
+                        
+                        // 计算总的清醒时间（16小时 = 960分钟）
+                        const totalAwakeMinutes = 16 * 60;
+                        
+                        // 计算已过去的时间
+                        let usedMinutes;
+                        if (currentHour >= 0 && currentHour < SLEEP_HOUR) {
+                            // 凌晨时段 (0-3点)，属于前一天的时间
+                            usedMinutes = (24 * 60 - wakeUpTime) + currentTimeInMinutes;
+                        } else if (currentHour >= WAKE_UP_HOUR) {
+                            // 正常清醒时段 (11-24点)
+                            usedMinutes = currentTimeInMinutes - wakeUpTime;
+                        } else {
+                            // 睡觉时段 (3-11点)，电量满格
+                            usedMinutes = 0;
+                        }
+                        
+                        // 确保不超出范围
+                        usedMinutes = Math.max(0, Math.min(usedMinutes, totalAwakeMinutes));
+                        
+                        // 计算剩余时间
+                        const remainingMinutes = totalAwakeMinutes - usedMinutes;
+                        
+                        // 计算电量百分比（剩余时间比例）
+                        const batteryPercent = Math.round((remainingMinutes / totalAwakeMinutes) * 100);
+                        
+                        // 格式化时间显示
+                        function formatTime(minutes) {
+                            const hours = Math.floor(minutes / 60);
+                            const mins = minutes % 60;
+                            return hours + '小时' + (mins > 0 ? mins + '分' : '');
+                        }
+                        
+                        // 更新UI
+                        const batteryLevel = document.getElementById('battery-level');
+                        const timeUsed = document.getElementById('time-used');
+                        const timeRemaining = document.getElementById('time-remaining');
+                        const batteryPercentElement = document.getElementById('battery-percent');
+                        
+                        if (batteryLevel && timeUsed && timeRemaining && batteryPercentElement) {
+                            // 更新电池宽度
+                            batteryLevel.style.width = batteryPercent + '%';
+                            
+                            // 根据电量改变颜色
+                            if (batteryPercent > 50) {
+                                batteryLevel.style.background = 'linear-gradient(90deg, #4ade80, #22c55e, #16a34a)';
+                            } else if (batteryPercent > 20) {
+                                batteryLevel.style.background = 'linear-gradient(90deg, #fbbf24, #f59e0b, #d97706)';
+                            } else {
+                                batteryLevel.style.background = 'linear-gradient(90deg, #ef4444, #dc2626, #b91c1c)';
+                            }
+                            
+                            // 更新文字信息
+                            timeUsed.textContent = formatTime(usedMinutes);
+                            timeRemaining.textContent = formatTime(remainingMinutes);
+                            batteryPercentElement.textContent = batteryPercent + '%';
+                        }
+                    }
+                    
+                    // 立即更新
+                    updateDailyProgress();
+                    // 每分钟更新一次
+                    setInterval(updateDailyProgress, 60000);
+                })();
+                </script>
+            </div>
+        </div>
         @}
     <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="${categorySite.title}"></i>${categorySite.title}</h4>
         <div class="row">

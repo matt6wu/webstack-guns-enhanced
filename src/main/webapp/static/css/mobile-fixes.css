@@ -39,6 +39,29 @@
     }
 }
 
+/* ⚠️ CRITICAL: 专门覆盖 app.css 中的 mobile-is-visible 类系统 */
+@media only screen and (max-width: 768px) {
+    /* 超高优先级选择器 - 直接对抗 app.css 的规则 */
+    html body .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible,
+    html body .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible.both-menus-visible,
+    html body .sidebar-user-info.mobile-is-visible,
+    html body .page-container .sidebar-menu,
+    html body .sidebar-menu,
+    .main-menu.mobile-is-visible,
+    .main-menu.mobile-is-visible.both-menus-visible,
+    .sidebar-user-info.mobile-is-visible {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        /* 多重保险措施 */
+        width: 0px !important;
+        height: 0px !important;
+        position: absolute !important;
+        left: -99999px !important;
+        z-index: -9999 !important;
+    }
+}
+
 /* Additional mobile optimizations */
 @media (max-width: 480px) {
     /* Even smaller logo for very small screens */

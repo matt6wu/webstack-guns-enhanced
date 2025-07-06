@@ -1017,6 +1017,108 @@ curl -I http://localhost:8000
 2. **文件权限**：确保JAR文件有写入权限
 3. **进程检查**：确认旧进程已完全停止再启动新进程
 
+## 🚨 CRITICAL: 移动端响应式CSS问题解决方案
+
+### ⚠️ 移动端Sidebar覆盖问题的根本原因
+
+**发现时间**: 2025-07-05  
+**问题症状**: 手机端访问时，黑色sidebar完全覆盖网站内容，无法正常浏览
+
+#### 根本原因分析
+
+**关键发现**: WebStack-Guns 的 `app.css` 文件中包含 **JavaScript 控制的动态CSS类系统**，这是导致移动端CSS修复失效的根本原因！
+
+#### 问题技术细节
+
+1. **JavaScript动态类控制**:
+   ```css
+   /* app.css 第3977-3978行 - 核心冲突规则 */
+   @media screen and (max-width:768px) {
+       .main-menu.mobile-is-visible {
+           display: block !important;  /* 这会覆盖任何 display: none */
+       }
+   }
+   ```
+
+2. **CSS优先级冲突**:
+   ```
+   常规CSS规则优先级: .sidebar-menu (0,0,1,0)
+   App.css冲突规则: .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible (0,0,5,0)
+   ```
+
+3. **加载顺序问题**:
+   ```html
+   <!-- _header.html 中的加载顺序 -->
+   <link rel="stylesheet" href="/static/css/app.css">        <!-- 包含冲突规则 -->
+   <link rel="stylesheet" href="/static/css/mobile-fixes.css?v=4.0">  <!-- 我们的修复 -->
+   ```
+
+#### 终极解决方案
+
+**文件**: `/src/main/webapp/static/css/mobile-fixes.css`
+
+```css
+/* ⚠️ CRITICAL: 专门覆盖 app.css 中的 mobile-is-visible 类系统 */
+@media only screen and (max-width: 768px) {
+    /* 超高优先级选择器 - 直接对抗 app.css 的规则 */
+    html body .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible,
+    html body .page-container .sidebar-menu .sidebar-menu-inner .main-menu.mobile-is-visible.both-menus-visible,
+    html body .sidebar-user-info.mobile-is-visible,
+    html body .page-container .sidebar-menu,
+    html body .sidebar-menu,
+    .main-menu.mobile-is-visible,
+    .main-menu.mobile-is-visible.both-menus-visible,
+    .sidebar-user-info.mobile-is-visible {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        /* 多重保险措施 */
+        width: 0px !important;
+        height: 0px !important;
+        position: absolute !important;
+        left: -99999px !important;
+        z-index: -9999 !important;
+    }
+}
+```
+
+#### 修复步骤记录
+
+1. **发现阶段**: 使用 Task 工具深度分析 `app.css` 找到冲突规则
+2. **定位问题**: 识别 `mobile-is-visible` 类系统是核心问题  
+3. **针对性修复**: 创建超高优先级CSS选择器覆盖原规则
+4. **版本控制**: 更新CSS版本号 `v=4.0` 强制浏览器重新加载
+5. **热更新**: 使用JAR热更新技术避免重新编译
+
+#### 重要经验教训
+
+1. **不要只看表面的CSS规则** - 需要深度分析整个CSS文件
+2. **JavaScript控制的CSS类优先级更高** - 需要特殊处理
+3. **CSS特异性比 !important 更重要** - 选择器越具体优先级越高
+4. **移动端测试必须用真实设备** - 桌面浏览器缩放不等同于移动端
+
+#### 预防措施
+
+⚠️ **今后遇到类似CSS问题，必须检查**:
+1. 原框架的 `app.css` 是否有 JavaScript 控制的动态类
+2. 是否存在 `.mobile-is-visible`, `.both-menus-visible` 等动态类
+3. 媒体查询中是否有超高优先级的选择器
+4. CSS加载顺序是否正确
+
+#### 验证方法
+```bash
+# 1. 检查CSS版本
+curl -I http://localhost:8000/static/css/mobile-fixes.css
+
+# 2. 手机端测试
+# 必须使用真实手机设备测试，不能只依赖桌面浏览器
+
+# 3. 开发者工具检查
+# 查看是否还有 mobile-is-visible 类被应用
+```
+
+**此问题解决后，移动端应该完全没有sidebar覆盖，网站内容正常显示。**
+
 ### 管理技巧
 
 #### 1. 分类排序
